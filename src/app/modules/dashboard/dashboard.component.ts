@@ -1,6 +1,6 @@
-import {  Component,  OnInit,  ViewChild,  ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import moment from 'moment';
-import {  DaterangepickerComponent,  DaterangepickerDirective} from 'ngx-daterangepicker-material';
+import { DaterangepickerComponent, DaterangepickerDirective } from 'ngx-daterangepicker-material';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -25,7 +25,7 @@ import "node_modules/leaflet/dist/images/marker-icon-2x.png";
 import "node_modules/leaflet/dist/images/marker-shadow.png";
 
 // mock data
-import {  addressPoints} from '../../../assets/data/addressPoints';
+import { addressPoints } from '../../../assets/data/addressPoints';
 
 import ApexCharts from 'apexcharts';
 import en from 'node_modules/apexcharts/dist/locales/en.json';
@@ -39,7 +39,7 @@ import cn from 'node_modules/apexcharts/dist/locales/zh-cn.json';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild(DaterangepickerDirective, {static: true}) pickerDirective: DaterangepickerDirective;
+  @ViewChild(DaterangepickerDirective, { static: true }) pickerDirective: DaterangepickerDirective;
   @ViewChild('map') mapid: ElementRef;
   @ViewChild('chart1') chart1: ElementRef;
   @ViewChild('chart2') chart2: ElementRef;
@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     endDate: moment.Moment
   };
 
-  en:any = en;
+  en: any = en;
   alwaysShowCalendars: boolean;
   inlineDate: any;
   inlineDateTime: any;
@@ -92,10 +92,10 @@ export class DashboardComponent implements OnInit {
       startDate: moment().subtract('days', 7),
       endDate: moment()
     };
-   
+
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.initMap();
@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit {
       markers: {
         size: 5,
       },
-      colors: [function({
+      colors: [function ({
         value,
         seriesIndex,
         w
@@ -136,12 +136,12 @@ export class DashboardComponent implements OnInit {
           lines: {
             show: false
           }
-        },   
+        },
         yaxis: {
           lines: {
             show: false
           }
-        },  
+        },
         row: {
           colors: ['#000000', '#333333', '#666666', '#999999', '#101010', '#111111']
         },
@@ -181,7 +181,12 @@ export class DashboardComponent implements OnInit {
 
     this.option3 = {
       toolbox: {
-        show: true
+        show: true,
+        feature: {
+          restore: {
+            show: true
+          }
+        }
       },
       xAxis: {
         type: 'category',
@@ -196,23 +201,26 @@ export class DashboardComponent implements OnInit {
       }]
     };
 
-    this.charts3 = echarts.init(this.chart3.nativeElement, null, {renderer: 'svg'});
+    this.charts3 = echarts.init(document.getElementById('chart3'), null, { renderer: 'svg' });
 
     this.charts3.setOption(this.option3);
-    this.charts3.resize();
+
+
+    window.onresize = () => {
+      this.charts3.resize();
+    };
   }
 
   addItem(e) {
-    console.log('parent expand', e)
+    console.log('parent expand')
     this.heightSmall = !e;
-    this.charts3.clear();
-    this.charts3.dispose();
-    this.charts3 = echarts.init(this.chart3.nativeElement, null, {renderer: 'svg'});
-    this.charts3.setOption(this.option3);
-    
+    setTimeout(() => {
+      this.charts3.resize();
+    })
+
   }
 
-  setChart1(el: any, option: any){
+  setChart1(el: any, option: any) {
 
     var chart = new ApexCharts(el, option);
 
