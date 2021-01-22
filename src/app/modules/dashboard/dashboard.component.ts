@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
   charts1;
   charts2;
   charts3;
-
+  option3;
   events;
 
 
@@ -179,8 +179,7 @@ export class DashboardComponent implements OnInit {
     //     console.log(`Debounced`);
     // });
 
-
-    var optionEchart = {
+    this.option3 = {
       toolbox: {
         show: true
       },
@@ -197,18 +196,20 @@ export class DashboardComponent implements OnInit {
       }]
     };
 
-    this.charts3 = echarts.init(this.chart3.nativeElement, null, {renderer: 'canvas'});
+    this.charts3 = echarts.init(this.chart3.nativeElement, null, {renderer: 'svg'});
 
-    this.charts3.setOption(optionEchart);
+    this.charts3.setOption(this.option3);
+    this.charts3.resize();
   }
 
   addItem(e) {
     console.log('parent expand', e)
     this.heightSmall = !e;
     this.charts3.clear();
-    // if (this.charts3._componentsMap[tmp]._features) {
-  // this.charts3._componentsMap[tmp]._features.dataZoom.onclick(null, null, 'back')
-// }
+    this.charts3.dispose();
+    this.charts3 = echarts.init(this.chart3.nativeElement, null, {renderer: 'svg'});
+    this.charts3.setOption(this.option3);
+    
   }
 
   setChart1(el: any, option: any){
