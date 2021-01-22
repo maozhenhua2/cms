@@ -1,0 +1,86 @@
+<!-- begin breadcrumb -->
+<ol class="breadcrumb float-xl-right">
+  <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+  <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+  <li class="breadcrumb-item active">map & chart</li>
+</ol>
+<!-- end breadcrumb -->
+<!-- begin page-header -->
+<h1 class="page-header mb-3">map & chart</h1>
+<!-- end page-header -->
+<!-- begin daterange-filter -->
+<div class="d-sm-flex align-items-center mb-3">
+  <div href="#" (click)="open($event)" class="ngx-daterangepicker-action btn btn-inverse mr-2 d-inline-flex align-items-center">
+    <i class="fa fa-calendar fa-fw text-white-transparent-5 ml-n1 mr-1"></i>
+    <input type="text" class="form-control width-200" readonly placeholder="Choose date" ngxDaterangepickerMd [locale]="locale" [opens]="'right'" [alwaysShowCalendars]="alwaysShowCalendars" [ranges]="ranges" [showDropdowns]="true" [showCustomRangeLabel]="true" [showClearButton]="true" [showCancel]="true" [(ngModel)]="selected" (ngModelChange)="ngModelChange($event)" />
+    <b class="caret ml-2"></b>
+  </div>
+  <div class="text-muted f-w-600 mt-2 mt-sm-0">compared to <span>{{ prevDate }}</span></div>
+</div>
+<!-- end daterange-filter -->
+<!-- begin row -->
+<div class="row">
+  <div class="col-xl-12">
+    <!-- begin card -->
+    <div class="card border-0 bg-dark text-white mb-3">
+      <!-- begin card-body -->
+      <div class="card-body">
+        <!-- begin row -->
+        <div class="row">
+          <div class="col-xl-12">
+            <div id="mapid" #map></div>
+          </div>
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end card-body -->
+    </div>
+    <!-- end card -->
+  </div>
+</div>
+<!-- end row -->
+
+<!-- begin row -->
+<div class="row">
+  <div class="col-xl-12">
+    <!-- begin card -->
+    <div class="card border-0 bg-dark text-white mb-3">
+      <!-- begin card-body -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="chart" id="chart1" #chart1></div>
+          </div>
+        </div>
+      </div>
+      <!-- end card-body -->
+    </div>
+    <!-- end card -->
+  </div>
+</div>
+<!-- end row -->
+
+<!-- begin row -->
+<div class="row">
+  <!-- begin col-6 -->
+  <div class="col-xl-6">
+    <!-- begin panel -->
+    <app-panel title="apex Chart" (newItemEvent)="addItem($event)">
+      <div class="height-sm">
+        <div class="chart" id="chart2" #chart2></div>
+      </div>
+    </app-panel>
+  </div>
+  <!-- end col-6 -->
+  <!-- begin col-6 -->
+  <div class="col-xl-6">
+    <!-- begin panel -->
+    <app-panel title="eChart" (newItemEvent)="addItem($event)">
+      <div [ngClass]="{'height-sm': heightSmall, 'height-full': !heightSmall}">
+        <div class="chart" id="chart3" #chart3></div>
+      </div>
+    </app-panel>
+  </div>
+  <!-- end col-6 -->
+</div>
+<!-- end row -->
