@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef} from '@angular/core';
 import moment from 'moment';
 import { DaterangepickerComponent, DaterangepickerDirective } from 'ngx-daterangepicker-material';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+// import { fromEvent } from 'rxjs';
+// import { debounceTime } from 'rxjs/operators';
 
 import * as echarts from 'echarts';
 
@@ -29,14 +29,15 @@ import { addressPoints } from '../../../assets/data/addressPoints';
 
 import ApexCharts from 'apexcharts';
 import en from 'node_modules/apexcharts/dist/locales/en.json';
-import es from 'node_modules/apexcharts/dist/locales/es.json';
-import cn from 'node_modules/apexcharts/dist/locales/zh-cn.json';
+// import es from 'node_modules/apexcharts/dist/locales/es.json';
+// import cn from 'node_modules/apexcharts/dist/locales/zh-cn.json';
 
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+
 })
 export class DashboardComponent implements OnInit {
   @ViewChild(DaterangepickerDirective, { static: true }) pickerDirective: DaterangepickerDirective;
@@ -84,9 +85,10 @@ export class DashboardComponent implements OnInit {
   charts3;
   option3;
   events;
+  charttype;
 
 
-  constructor() {
+  constructor(private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) {
     this.alwaysShowCalendars = true;
     this.selected = {
       startDate: moment().subtract('days', 7),
@@ -95,13 +97,17 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log('---2 ngOnInit---')
+  }
 
   ngAfterViewInit() {
-    this.initMap();
+    // console.log('---6 ngAfterViewInit---')
+    this.changeDetectorRef.detach();
+    this.charttype = 'eCharts';
 
 
-    var options = {
+    let options = {
       series: [{
         name: 'Website Blog',
         type: 'bar',
@@ -119,8 +125,8 @@ export class DashboardComponent implements OnInit {
       },
       colors: [function ({
         value,
-        seriesIndex,
-        w
+        // seriesIndex,
+        // w
       }) {
         if (value < 400) {
           return '#7E36AF'
@@ -172,8 +178,8 @@ export class DashboardComponent implements OnInit {
         }
       }],
     };
-    this.charts1 = this.setChart1(this.chart1.nativeElement, options);
-    this.charts2 = this.setChart1(this.chart2.nativeElement, options);
+    // this.charts1 = this.setChart1(this.chart1.nativeElement, options);
+    // this.charts2 = this.setChart1(this.chart2.nativeElement, options);
     // this.charts3 = this.setChart1(this.chart3.nativeElement, options);
     // fromEvent(window, 'resize').pipe(debounceTime(500)).subscribe(val => {
     //     console.log(`Debounced`);
@@ -201,28 +207,63 @@ export class DashboardComponent implements OnInit {
       }]
     };
 
-    this.charts3 = echarts.init(document.getElementById('chart3'), null, { renderer: 'svg' });
 
-    this.charts3.setOption(this.option3);
-
+    // 优化性能，不然只要鼠标经过图表就会不断触发ngDoCheck，ngAfterContentChecked，ngAfterViewChecked生命周期
+    this.zone.runOutsideAngular(() => {
+      this.initMap();
+      this.charts1 = this.setChart1(this.chart1.nativeElement, options);
+      this.charts2 = this.setChart1(this.chart2.nativeElement, options);
+      this.charts3 = echarts.init(document.getElementById('chart3'), null, { renderer: 'svg' });
+      this.charts3.setOption(this.option3);
+    });
 
     window.onresize = () => {
       this.charts3.resize();
     };
+    this.changeDetectorRef.detectChanges();
   }
+  /*ngOnChanges(): void {
+    console.log('---1-2 ngOnChanges---')
+  }
+
+  ngDoCheck(): void {
+    console.log('---3,7 ngDoCheck---')
+  }
+
+  ngAfterContentInit(): void {
+    console.log('---4 ngAfterContentInit---')
+  }
+  ngAfterContentChecked(): void {
+    console.log('---5,8 ngAfterContentChecked---')
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('---9 ngAfterViewChecked---')
+  }
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy')
+  }*/
 
   addItem(e) {
     console.log('parent expand')
-    this.heightSmall = !e;
-    setTimeout(() => {
-      this.charts3.resize();
-    })
+    // this.zone.run(()=> {
+      this.heightSmall = !e;
+      console.log(this.heightSmall)
+
+      this.changeDetectorRef.detectChanges();
+      setTimeout(() => {
+        this.charts3.resize();
+      })
+    // })
+
+
+
 
   }
 
   setChart1(el: any, option: any) {
 
-    var chart = new ApexCharts(el, option);
+    let chart = new ApexCharts(el, option);
 
     chart.render();
 
@@ -263,7 +304,7 @@ export class DashboardComponent implements OnInit {
     this.pickerDirective.open(e);
   }
 
-  clear(e) {
+  clear(/*e*/) {
     this.selected = null;
   }
 
