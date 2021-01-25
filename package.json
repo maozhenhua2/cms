@@ -27,6 +27,7 @@
     "@ngx-loading-bar/router": "^5.1.1",
     "@swimlane/ngx-datatable": "^19.0.0",
     "apexcharts": "^3.23.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "echarts": "^5.0.1",
     "leaflet": "^1.7.1",

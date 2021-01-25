@@ -34,21 +34,21 @@ export class PanelComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.changeDetectorRef.detach();
+    // this.changeDetectorRef.detach();
     setTimeout(() => {
       this.showFooter = this.panelFooter.nativeElement && this.panelFooter.nativeElement.children.length > 0;
     });
   }
 
 
-  // ngOnChanges(): void {
+  ngOnChanges(changes): void {
   //   console.log('---1-2 ngOnChanges---');
-  // }
+  }
 
   // 监视@input变化
   ngDoCheck(): void {
-    console.log(this.title)
-    this.changeDetectorRef.detectChanges();
+    // console.log(this.title)
+    // this.changeDetectorRef.detectChanges();
     // console.log('---3,7 ngDoCheck---');
   }
 
@@ -72,7 +72,7 @@ export class PanelComponent implements AfterViewInit {
     console.log('child expand');
     this.expand = !this.expand;
     this.newItemEvent.emit(this.expand);
-    this.changeDetectorRef.detectChanges();
+    // this.changeDetectorRef.detectChanges();
     // this.evtChart.render();
   }
 

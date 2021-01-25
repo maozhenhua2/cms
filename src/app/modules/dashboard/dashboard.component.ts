@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef} from '@angular/core';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import moment from 'moment';
-import { DaterangepickerComponent, DaterangepickerDirective } from 'ngx-daterangepicker-material';
+import {DaterangepickerComponent, DaterangepickerDirective} from 'ngx-daterangepicker-material';
 // import { fromEvent } from 'rxjs';
 // import { debounceTime } from 'rxjs/operators';
 
@@ -21,16 +22,18 @@ import * as L from 'node_modules/leaflet/dist/leaflet';
 // leaflet 热点聚合插件
 import 'leaflet.markercluster';
 // 很重要，不然缩放的时候这2张图片会报404
-import "node_modules/leaflet/dist/images/marker-icon-2x.png";
-import "node_modules/leaflet/dist/images/marker-shadow.png";
+import 'node_modules/leaflet/dist/images/marker-icon-2x.png';
+import 'node_modules/leaflet/dist/images/marker-shadow.png';
 
 // mock data
-import { addressPoints } from '../../../assets/data/addressPoints';
+import {addressPoints} from '../../../assets/data/addressPoints';
 
 import ApexCharts from 'apexcharts';
 import en from 'node_modules/apexcharts/dist/locales/en.json';
 // import es from 'node_modules/apexcharts/dist/locales/es.json';
 // import cn from 'node_modules/apexcharts/dist/locales/zh-cn.json';
+
+import {AjaxService} from '../../services/ajax.service';
 
 
 @Component({
@@ -40,7 +43,7 @@ import en from 'node_modules/apexcharts/dist/locales/en.json';
 
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild(DaterangepickerDirective, { static: true }) pickerDirective: DaterangepickerDirective;
+  @ViewChild(DaterangepickerDirective, {static: true}) pickerDirective: DaterangepickerDirective;
   @ViewChild('map') mapid: ElementRef;
   @ViewChild('chart1') chart1: ElementRef;
   @ViewChild('chart2') chart2: ElementRef;
@@ -76,7 +79,7 @@ export class DashboardComponent implements OnInit {
     separator: ' - ',
     cancelLabel: 'Cancel',
     applyLabel: 'Apply'
-  }
+  };
 
   map;
   heightSmall: boolean = true;
@@ -86,26 +89,62 @@ export class DashboardComponent implements OnInit {
   option3;
   events;
   charttype;
+  urls;
+  links;
 
 
-  constructor(private zone: NgZone, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(
+    private zone: NgZone,
+    private changeDetectorRef: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
     this.alwaysShowCalendars = true;
     this.selected = {
       startDate: moment().subtract('days', 7),
       endDate: moment()
     };
-
+    this.charttype = 'eCharts';
+    // this.urls = ['1', '2', '3', '4'];
   }
 
   ngOnInit() {
     // console.log('---2 ngOnInit---')
   }
 
+  getb(urls) {
+    let arr = Array.from(urls);
+    let urls2 = arr.map((v, i) => {
+      let r = this.getp(i, arr);
+      return r;
+    });
+    return urls2;
+  }
+
+  getp(i, arr) {
+    let narr = arr.slice(0, i);
+    let pre = narr.join('/');
+    pre = pre !== '' ? '/' + pre : pre;
+    return pre;
+  }
+
   ngAfterViewInit() {
     // console.log('---6 ngAfterViewInit---')
-    this.changeDetectorRef.detach();
-    this.charttype = 'eCharts';
+    // this.changeDetectorRef.detach();
+    // this.charttype = 'eCharts';
 
+    let urls = this.router.url.split(('/')).filter((v) => !!v);
+    AjaxService.get('/assets/i18n/en.json').then((data) => {
+      this.links = urls;
+      this.urls = urls.map((v) => data[v]);
+
+      // let u2 = this.urls.reduce((...val)=> {
+      //   return val[0] + val[1]
+      // });
+      // console.log(u2)
+      // console.log(this.urls);
+      // this.changeDetectorRef.detectChanges();
+    });
 
     let options = {
       series: [{
@@ -123,15 +162,15 @@ export class DashboardComponent implements OnInit {
       markers: {
         size: 5,
       },
-      colors: [function ({
-        value,
-        // seriesIndex,
-        // w
-      }) {
+      colors: [function({
+                          value,
+                          // seriesIndex,
+                          // w
+                        }) {
         if (value < 400) {
-          return '#7E36AF'
+          return '#7E36AF';
         } else {
-          return '#D9534F'
+          return '#D9534F';
         }
       },],
       grid: {
@@ -213,15 +252,16 @@ export class DashboardComponent implements OnInit {
       this.initMap();
       this.charts1 = this.setChart1(this.chart1.nativeElement, options);
       this.charts2 = this.setChart1(this.chart2.nativeElement, options);
-      this.charts3 = echarts.init(document.getElementById('chart3'), null, { renderer: 'svg' });
+      this.charts3 = echarts.init(document.getElementById('chart3'), null, {renderer: 'svg'});
       this.charts3.setOption(this.option3);
     });
 
     window.onresize = () => {
       this.charts3.resize();
     };
-    this.changeDetectorRef.detectChanges();
+    // this.changeDetectorRef.detectChanges();
   }
+
   /*ngOnChanges(): void {
     console.log('---1-2 ngOnChanges---')
   }
@@ -245,18 +285,16 @@ export class DashboardComponent implements OnInit {
   }*/
 
   addItem(e) {
-    console.log('parent expand')
+    console.log('parent expand');
     // this.zone.run(()=> {
-      this.heightSmall = !e;
-      console.log(this.heightSmall)
+    this.heightSmall = !e;
+    // console.log(this.heightSmall);
 
-      this.changeDetectorRef.detectChanges();
-      setTimeout(() => {
-        this.charts3.resize();
-      })
+    this.changeDetectorRef.detectChanges();
+    setTimeout(() => {
+      this.charts3.resize();
+    });
     // })
-
-
 
 
   }

@@ -1,8 +1,6 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb float-xl-right">
-  <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-  <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-  <li class="breadcrumb-item active">map & chart</li>
+  <li class="breadcrumb-item" *ngFor="let url of urls; index as i;" [ngClass]="{'active': i === urls.length - 1}" ><a [routerLink]="getb(links)[i] + '/' +  links[i]">{{url}} </a></li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
