@@ -1,11 +1,12 @@
-import {Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef, HostListener} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import moment from 'moment';
 import {DaterangepickerComponent, DaterangepickerDirective} from 'ngx-daterangepicker-material';
-// import { fromEvent } from 'rxjs';
-// import { debounceTime } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import * as echarts from 'echarts';
+import * as langEN from 'echarts/lib/i18n/langEN';
 
 // // 引入 echarts 主模块。
 // import * as echarts from 'echarts/lib/echarts';
@@ -16,6 +17,9 @@ import * as echarts from 'echarts';
 // import 'echarts/lib/component/tooltip';
 // import 'echarts/lib/component/title';
 // import 'echarts/lib/component/toolbox';
+
+
+// import pageSettings from '../../config/page-settings';
 
 
 import * as L from 'node_modules/leaflet/dist/leaflet';
@@ -91,7 +95,7 @@ export class DashboardComponent implements OnInit {
   charttype;
   urls;
   links;
-
+  // pageSettings= pageSettings;
 
   constructor(
     private zone: NgZone,
@@ -99,6 +103,8 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
+
+    // this.pageSettings.pageEmpty = false;
     this.alwaysShowCalendars = true;
     this.selected = {
       startDate: moment().subtract('days', 7),
@@ -132,6 +138,11 @@ export class DashboardComponent implements OnInit {
     // console.log('---6 ngAfterViewInit---')
     // this.changeDetectorRef.detach();
     // this.charttype = 'eCharts';
+
+    
+    // echarts.init(DomElement, null, {​
+    //    locale: 'DE'​
+    // });
 
     let urls = this.router.url.split(('/')).filter((v) => !!v);
     AjaxService.get('/assets/i18n/en.json').then((data) => {
@@ -228,11 +239,13 @@ export class DashboardComponent implements OnInit {
       toolbox: {
         show: true,
         feature: {
-          restore: {
-            show: true
-          }
+            dataZoom: {},
+            dataView: {readOnly: false},
+            magicType: {},
+            restore: {},
+            saveAsImage: {}
         }
-      },
+    },
       xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -252,14 +265,16 @@ export class DashboardComponent implements OnInit {
       this.initMap();
       this.charts1 = this.setChart1(this.chart1.nativeElement, options);
       this.charts2 = this.setChart1(this.chart2.nativeElement, options);
-      this.charts3 = echarts.init(document.getElementById('chart3'), null, {renderer: 'svg'});
+
+      // echarts.registerLocale('EN', langEN);​
+      this.charts3 = echarts.init(document.getElementById('chart3'), null, {renderer: 'svg', /*locale: 'EN'*/});
       this.charts3.setOption(this.option3);
     });
 
-    window.onresize = () => {
-      this.charts3.resize();
-    };
-    // this.changeDetectorRef.detectChanges();
+    // resize 防抖
+    const resize = fromEvent(window, 'resize');
+    const result = resize.pipe(debounceTime(300));
+    result.subscribe(x => {this.charts3.resize()});
   }
 
   /*ngOnChanges(): void {

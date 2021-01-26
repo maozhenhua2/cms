@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import pageMenus from '../../config/page-menus';
 import pageSettings from '../../config/page-settings';
@@ -63,6 +65,12 @@ export class TopMenuComponent implements OnInit {
       this.navControlRight = (listPrevWidth != listFullWidth && listFullWidth >= windowWidth) ? true : false;
       this.navControlLeft = (listPrevWidth >= windowWidth && listFullWidth >= windowWidth) ? true : false;
     });
+
+
+    // resize 防抖
+    const resize = fromEvent(window, 'resize');
+    const result = resize.pipe(debounceTime(300));
+    result.subscribe(x => {this.onResize()});
   }
 
   controlLeft() {
@@ -112,8 +120,8 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  // @HostListener('window:resize', ['$event'])
+  onResize(/*event*/) {
     if (window.innerWidth <= 767) {
       this.mobileMode = true;
       this.desktopMode = false;

@@ -14,6 +14,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+// 结构组建
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,6 +22,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FloatSubMenuComponent } from './components/float-sub-menu/float-sub-menu.component';
+
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
 // import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
@@ -32,6 +37,9 @@ import { FloatSubMenuComponent } from './components/float-sub-menu/float-sub-men
     SidebarRightComponent,
     FooterComponent,
     FloatSubMenuComponent,
+    LoginComponent,
+    RegisterComponent,
+    ExtraErrorComponent,
     // PanelComponent
   ],
   imports: [
