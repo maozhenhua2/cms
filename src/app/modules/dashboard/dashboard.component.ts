@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef, HostListener} from '@angular/core';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import moment from 'moment';
-import {DaterangepickerComponent, DaterangepickerDirective} from 'ngx-daterangepicker-material';
+import { DaterangepickerComponent, DaterangepickerDirective } from 'ngx-daterangepicker-material';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -30,14 +30,14 @@ import 'node_modules/leaflet/dist/images/marker-icon-2x.png';
 import 'node_modules/leaflet/dist/images/marker-shadow.png';
 
 // mock data
-import {addressPoints} from '../../../assets/data/addressPoints';
+import { addressPoints } from '../../../assets/data/addressPoints';
 
 import ApexCharts from 'apexcharts';
 import en from 'node_modules/apexcharts/dist/locales/en.json';
 // import es from 'node_modules/apexcharts/dist/locales/es.json';
 // import cn from 'node_modules/apexcharts/dist/locales/zh-cn.json';
 
-import {AjaxService} from '../../services/ajax.service';
+import { AjaxService } from '../../services/ajax.service';
 
 
 @Component({
@@ -47,7 +47,7 @@ import {AjaxService} from '../../services/ajax.service';
 
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild(DaterangepickerDirective, {static: true}) pickerDirective: DaterangepickerDirective;
+  @ViewChild(DaterangepickerDirective, { static: true }) pickerDirective: DaterangepickerDirective;
   @ViewChild('map') mapid: ElementRef;
   @ViewChild('chart1') chart1: ElementRef;
   @ViewChild('chart2') chart2: ElementRef;
@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
     // this.changeDetectorRef.detach();
     // this.charttype = 'eCharts';
 
-    
+
     // echarts.init(DomElement, null, {​
     //    locale: 'DE'​
     // });
@@ -173,11 +173,11 @@ export class DashboardComponent implements OnInit {
       markers: {
         size: 5,
       },
-      colors: [function({
-                          value,
-                          // seriesIndex,
-                          // w
-                        }) {
+      colors: [function ({
+        value,
+        // seriesIndex,
+        // w
+      }) {
         if (value < 400) {
           return '#7E36AF';
         } else {
@@ -239,13 +239,13 @@ export class DashboardComponent implements OnInit {
       toolbox: {
         show: true,
         feature: {
-            dataZoom: {},
-            dataView: {readOnly: false},
-            magicType: {},
-            restore: {},
-            saveAsImage: {}
+          dataZoom: {},
+          dataView: { readOnly: false },
+          magicType: {},
+          restore: {},
+          saveAsImage: {}
         }
-    },
+      },
       xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -267,14 +267,14 @@ export class DashboardComponent implements OnInit {
       this.charts2 = this.setChart1(this.chart2.nativeElement, options);
 
       // echarts.registerLocale('EN', langEN);​
-      this.charts3 = echarts.init(document.getElementById('chart3'), null, {renderer: 'svg', /*locale: 'EN'*/});
+      this.charts3 = echarts.init(document.getElementById('chart3'), null, { renderer: 'svg', /*locale: 'EN'*/ });
       this.charts3.setOption(this.option3);
     });
 
     // resize 防抖
     const resize = fromEvent(window, 'resize');
     const result = resize.pipe(debounceTime(300));
-    result.subscribe(x => {this.charts3.resize()});
+    result.subscribe(x => { this.charts3.resize() });
   }
 
   /*ngOnChanges(): void {
