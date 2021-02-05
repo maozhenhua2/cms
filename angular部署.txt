@@ -1,0 +1,27 @@
+1.打开IIS添加Mime项
+关联扩展名：*.json
+内容类型(MIME)：text/json
+
+文件扩展名：.woff
+MIME类型：application/x-font-woff
+
+文件扩展名：.woff2
+MIME类型：application/x-font-woff
+
+web.config
+<configuration>
+<system.webServer>
+ <rewrite>
+  <rules>
+   <rule name="Angular Routes" stopProcessing="true">
+    <match url=".*" />
+   <conditions logicalGrouping="MatchAll">
+    <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+    <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+   </conditions>
+   <action type="Rewrite" url="/" />
+   </rule>
+  </rules>
+ </rewrite>
+</system.webServer>
+</configuration>
