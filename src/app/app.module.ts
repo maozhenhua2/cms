@@ -22,11 +22,17 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FloatSubMenuComponent } from './components/float-sub-menu/float-sub-menu.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
-// import { PanelComponent } from './components/panel/panel.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
+import { CommfnService } from './services/commfn.service';
+import { EquipmentboxComponent } from './components/equipmentbox/equipmentbox.component';
+import { ChartComponent } from './components/chart/chart.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +46,10 @@ import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
     LoginComponent,
     RegisterComponent,
     ExtraErrorComponent,
-    // PanelComponent
+    PanelComponent,
+    DashboardComponent,
+    EquipmentboxComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +60,13 @@ import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
     PerfectScrollbarModule,
     NgxDaterangepickerMd.forRoot(),
   ],
-  providers: [{
-    provide: PERFECT_SCROLLBAR_CONFIG,
-    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-  }],
+  providers: [
+    CommfnService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

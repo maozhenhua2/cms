@@ -1,0 +1,34 @@
+<div class="equipmentboxbox">
+	<p>{{option.title}}</p>
+	<div class="equipmentlist">
+		<div *ngIf="option.status.dis !== undefined">
+			<p>Issues</p>
+			<span class="red"></span>
+			<p>{{option.status.dis}}</p>
+		</div>
+
+		<div *ngIf="option.status.run !== undefined">
+			<p>Running</p>
+			<span class="green"></span>
+			<p>{{option.status.run}}</p>
+		</div>
+
+		<div *ngIf="option.status.pause !== undefined">
+			<p>Pause</p>
+			<span class="blue"></span>
+			<p>{{option.status.pause}}</p>
+		</div>
+
+		<div *ngIf="option.status.nok !== undefined">
+			<p>No data</p>
+			<span class="red"></span>
+			<p>{{option.status.nok}}</p>
+		</div>
+
+		<div *ngIf="option.status.ok !== undefined">
+			<p>Data ok</p>
+			<span class="green"></span>
+			<p>{{option.status.ok}}</p>
+		</div>
+	</div>
+</div>

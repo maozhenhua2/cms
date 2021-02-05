@@ -12,3 +12,10 @@
     font-weight: bold;
   }
 }
+
+
+app-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

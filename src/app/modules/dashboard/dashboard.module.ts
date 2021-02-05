@@ -8,13 +8,13 @@ import {AjaxService} from '../../services/ajax.service';
 
 import {NgxDaterangepickerMd} from 'ngx-daterangepicker-material';
 import {DashboardComponent} from './dashboard.component';
-import {PanelComponent} from '../../components/panel/panel.component';
+// import {PanelComponent} from '../../components/panel/panel.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PanelComponent
+    // PanelComponent
   ],
   imports: [
     CommonModule,

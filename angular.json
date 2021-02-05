@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/vendor/leaflet/leaflet.js",
+              "src/assets/vendor/leaflet.markercluster/leaflet.markercluster.js"
+            ]
           },
           "configurations": {
             "production": {

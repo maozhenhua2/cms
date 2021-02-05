@@ -1,9 +1,9 @@
 var pageMenus = [
   {
     'icon': 'fa fa-th-large',
-    'title': 'map & chart',
-    'url': 'home/dashboard',
-  }, {
+    'title': 'Monitoring',
+    'url': 'home',
+  }/*, {
 	  'icon': 'fa fa-key',
 	  'title': 'Login & Register',
 	  'url': '',
@@ -15,7 +15,7 @@ var pageMenus = [
 	    'url': 'register',
 	    'title': 'Register'
 	  }]
-	}
+	}*/
 ];
 
 export default pageMenus;

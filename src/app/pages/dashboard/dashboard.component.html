@@ -1,0 +1,45 @@
+<!-- begin breadcrumb -->
+<ol class="breadcrumb float-xl-right">
+  <li class="breadcrumb-item" *ngFor="let url of urls; index as i;" [ngClass]="{'active': i === urls.length - 1}" ><a [routerLink]="getb(links)[i] + '/' +  links[i]">{{url}} </a></li>
+</ol>
+<!-- end breadcrumb -->
+<!-- begin page-header -->
+<h1 class="page-header mb-3">Monitored Equipment</h1>
+<!-- end page-header -->
+<!-- begin row -->
+<div class="row" id="mapBox">
+  <div class="col-xl-12">
+    <!-- begin card -->
+    <div class="card border-0 bg-dark text-white mb-3">
+      <!-- begin card-body -->
+      <div class="card-body">
+        <!-- begin row -->
+        <div class="row">
+          <div class="col-xl-9">
+            <div id="mapid" #map></div>
+          </div>
+
+          <div class="col-xl-3" id="allStatus">
+            <div id="equipmentStatusBox">
+              <h5>Equipment Status</h5>
+              <app-equipmentbox *ngIf="isKey('all_status', status)" [option]="{status: status.all_status, title: 'All Equipment'}"></app-equipmentbox>
+
+              <app-equipmentbox *ngIf="iskey('device_status', status)" [option]="{status: status.device_status, title: 'Machines'}"></app-equipmentbox>
+
+              <app-equipmentbox *ngIf="iskey('mon_status', status)" [option]="{status: status.mon_status, title: 'Monitors'}"></app-equipmentbox>
+
+              <app-equipmentbox *ngIf="iskey('outdoor_status', status)" [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox>
+            </div>
+
+            <div class="chart"><app-chart></app-chart></div>
+
+          </div>
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end card-body -->
+    </div>
+    <!-- end card -->
+  </div>
+</div>
+<!-- end row -->
