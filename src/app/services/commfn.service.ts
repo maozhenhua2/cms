@@ -1,8 +1,26 @@
 import {Injectable} from '@angular/core';
+import {fromEvent, Observable, Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+
+// import * as echarts from 'src/assets/vendor/echarts/echarts.esm';
+// import * as langEN from 'echarts/lib/i18n/langEN';
+// import * as xlsx from 'src/assets/vendor/xlsx/xlsx';
 
 import * as echarts from 'echarts';
-// import * as langEN from 'echarts/lib/i18n/langEN';
-import * as XLSX from 'xlsx';
+import * as xlsx from 'xlsx';
+
+
+
+let minified = new Subject();
+
+export function changeMinified(message: any): void {
+  minified.next(message);
+}
+
+export function getMinified() {
+  return minified.asObservable();
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +29,7 @@ export class CommfnService {
 
   constructor() {
   }
+
 
   static setToolBox(dom, id, option) {
     let _this = this;
@@ -125,4 +144,50 @@ export class CommfnService {
     });
     return myChart;
   }
+
+  static windowResize() {
+    if (document.createEvent) {
+      let event = document.createEvent('HTMLEvents');
+      event.initEvent('resize', true, true);
+      window.dispatchEvent(event);
+    } else { // @ts-ignore
+      if (document.createEventObject) {
+        // @ts-ignore
+        window.fireEvent('onresize');
+      }
+    }
+  }
 }
+
+
+/*function updateLocation(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let accuracy = position.coords.accuracy;
+  console.log(latitude, longitude)
+}*/
+
+/*function handleLocationError(error) {
+  switch (error.code) {
+    case 0:
+      console.log('尝试获取您的位置信息时发生错误： '+ error.message);
+      break;
+    case 1:
+      console.log('用户拒绝了获取位置信息请求。');
+      break;
+    case 2:
+      console.log('浏览器无法获取您的位置信息。');
+      break;
+    case 3:
+      console.log('获取您位置信息超时。');
+      break;
+  }
+}*/
+
+/*let myOptions = {
+  enableHighAccuracy: true,
+  timeout: 30000,
+  maximumAge: 0
+};*/
+
+// navigator.geolocation.getCurrentPosition(updateLocation, handleLocationError, myOptions);

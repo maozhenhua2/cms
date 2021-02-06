@@ -1,5 +1,5 @@
-import { group, animate, query, style, trigger, transition, state } from '@angular/animations';
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, HostListener, ViewChild, AfterViewChecked } from '@angular/core';
+import {group, animate, query, style, trigger, transition, state} from '@angular/animations';
+import {Component, OnInit, Input, Output, EventEmitter, ElementRef, HostListener, ViewChild, AfterViewChecked} from '@angular/core';
 import * as global from '../../config/globals';
 import pageMenus from '../../config/page-menus';
 import pageSettings from '../../config/page-settings';
@@ -10,9 +10,9 @@ import pageSettings from '../../config/page-settings';
   styleUrls: ['./sidebar.component.scss'],
   animations: [
     trigger('expandCollapse', [
-      state('expand', style({ height: '*', overflow: 'hidden', display: 'block' })),
-      state('collapse', style({ height: '0px', overflow: 'hidden', display: 'none' })),
-      state('active', style({ height: '*', overflow: 'hidden', display: 'block' })),
+      state('expand', style({height: '*', overflow: 'hidden', display: 'block'})),
+      state('collapse', style({height: '0px', overflow: 'hidden', display: 'none'})),
+      state('active', style({height: '*', overflow: 'hidden', display: 'block'})),
       transition('expand <=> collapse', animate(100)),
       transition('active => collapse', animate(100))
     ])
@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
   }
 
   navProfileState = 'collapse';
-  @ViewChild('sidebarScrollbar', { static: false }) private sidebarScrollbar: ElementRef;
+  @ViewChild('sidebarScrollbar', {static: false}) private sidebarScrollbar: ElementRef;
   @Output() toggleSidebarMinified = new EventEmitter<boolean>();
   @Output() hideMobileSidebar = new EventEmitter<boolean>();
   @Output() setPageFloatSubMenu = new EventEmitter();
@@ -80,8 +80,8 @@ export class SidebarComponent implements OnInit {
     var windowHeight = window.innerHeight;
 
     setTimeout(() => {
-      let targetElm = <HTMLElement>document.querySelector('.float-sub-menu-container');
-      let targetSidebar = <HTMLElement>document.getElementById('sidebar');
+      let targetElm = <HTMLElement> document.querySelector('.float-sub-menu-container');
+      let targetSidebar = <HTMLElement> document.getElementById('sidebar');
       var targetHeight = targetElm.offsetHeight;
       this.pageFloatSubMenuRight = 'auto';
       this.pageFloatSubMenuLeft = (this.pageFloatSubMenuOffset.width + targetSidebar.offsetLeft) + 'px';

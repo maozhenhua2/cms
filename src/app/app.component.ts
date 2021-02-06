@@ -1,8 +1,10 @@
-import { Component, HostListener, Renderer2, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular/router';
+import {Component, HostListener, Renderer2, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {Router, NavigationEnd, NavigationStart, ActivatedRoute} from '@angular/router';
 import pageSettings from './config/page-settings';
 import * as global from './config/globals';
+
+import {changeMinified} from 'src/app/services/commfn.service';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +42,8 @@ export class AppComponent {
     } else {
       this.pageSettings.pageSidebarMinified = true;
     }
+
+    changeMinified(this.pageSettings.pageSidebarMinified);
   }
 
   // set page right collapse

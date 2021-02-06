@@ -32,6 +32,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CommfnService } from './services/commfn.service';
 import { EquipmentboxComponent } from './components/equipmentbox/equipmentbox.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ChartComponent } from './components/chart/chart.component';
     PanelComponent,
     DashboardComponent,
     EquipmentboxComponent,
-    ChartComponent
+    ChartComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

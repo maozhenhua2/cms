@@ -34,10 +34,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "src/assets/vendor/leaflet/leaflet.js",
-              "src/assets/vendor/leaflet.markercluster/leaflet.markercluster.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
