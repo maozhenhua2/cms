@@ -23,17 +23,13 @@
           <div class="col-xl-4" id="allStatus">
             <div id="equipmentStatusBox">
               <h5>Equipment Status</h5>
-              <app-equipmentbox *ngIf="isHaskey('all_status', status)"
-                                [option]="{status: status.all_status, title: 'All Equipment'}"></app-equipmentbox>
+              <app-equipmentbox *ngIf="isHaskey('all_status', status)" [option]="{status: status.all_status, title: 'All Equipment'}"></app-equipmentbox>
 
-              <app-equipmentbox *ngIf="isHaskey('device_status', status)"
-                                [option]="{status: status.device_status, title: 'Machines'}"></app-equipmentbox>
+              <app-equipmentbox *ngIf="isHaskey('device_status', status)" [option]="{status: status.device_status, title: 'Machines'}"></app-equipmentbox>
 
-              <app-equipmentbox *ngIf="isHaskey('mon_status', status)"
-                                [option]="{status: status.mon_status, title: 'Monitors'}"></app-equipmentbox>
+              <app-equipmentbox *ngIf="isHaskey('mon_status', status)" [option]="{status: status.mon_status, title: 'Monitors'}"></app-equipmentbox>
 
-              <app-equipmentbox *ngIf="isHaskey('outdoor_status', status)"
-                                [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox>
+              <app-equipmentbox *ngIf="isHaskey('outdoor_status', status)" [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox>
             </div>
 
             <div class="chart">

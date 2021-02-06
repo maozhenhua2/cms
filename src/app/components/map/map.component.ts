@@ -1,11 +1,24 @@
 import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input} from '@angular/core';
 
-// 很重要，不然缩放的时候这2张图片会报404
-// import 'node_modules/leaflet/dist/images/marker-icon-2x.png';
-// import 'node_modules/leaflet/dist/images/marker-shadow.png';
-// import 'src/assets/vendor/leaflet/images/marker-icon.png'
-import * as L from 'node_modules/leaflet/dist/leaflet';
+import 'node_modules/leaflet/dist/leaflet';
 import 'node_modules/leaflet.markercluster/dist/leaflet.markercluster';
+//  方法1
+// import markerIcon from 'leaflet/dist/images/marker-icon.png';
+// import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+// import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+// import 'src/assets/vendor/leaflet/images/marker-icon.png';
+// import 'src/assets/vendor/leaflet/images/marker-icon-2x.png';
+// import 'src/assets/vendor/leaflet/images/marker-shadow.png';
+
+// 方法2
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow
+});
+L.Marker.prototype.options.icon = DefaultIcon;
 
 @Component({
   selector: 'app-map',
@@ -19,6 +32,7 @@ export class MapComponent implements OnInit {
   @Output() loadView = new EventEmitter<any>();
 
   constructor() {
+    // this.patchLeafletMarker(L);
   }
 
   ngOnInit(): void {
@@ -47,10 +61,9 @@ export class MapComponent implements OnInit {
       // console.log(datas.lat, datas.lon);
       if (datas.lat && datas.lon) {
         // let marker = L.marker(L.LatLng(datas.lat, datas.lon), {
-        let marker = L.marker([datas.lat, datas.lon], {
+        let marker = L.marker(new L.LatLng(datas.lat, datas.lon), {
           title: title
         });
-        // .addTo(map);
         marker.bindPopup(title);
         markers.addLayer(marker);
       }
@@ -65,4 +78,77 @@ export class MapComponent implements OnInit {
 
   }
 
+  // patchLeafletMarker(L) {
+  //   let Icon = L.Icon;
+  //   let IconDefault = Icon.Default;
+  //
+  //   function getStyle(el, style) {
+  //     let value = el.style[style] || (el.currentStyle && el.currentStyle[style]);
+  //
+  //     if ((!value || value === 'auto') && document.defaultView) {
+  //       let css = document.defaultView.getComputedStyle(el, null);
+  //       value = css ? css[style] : null;
+  //     }
+  //     return value === 'auto' ? null : value;
+  //   }
+  //
+  //   // @function create(tagName: String, className?: String, container?: HTMLElement): HTMLElement
+  //   // Creates an HTML element with `tagName`, sets its class to `className`, and optionally appends it to `container` element.
+  //   function create$1(tagName, className, container) {
+  //     let el = document.createElement(tagName);
+  //     el.className = className || '';
+  //
+  //     if (container) {
+  //       container.appendChild(el);
+  //     }
+  //     return el;
+  //   }
+  //
+  //   IconDefault.prototype._getIconUrl = function(name) {
+  //     if (!IconDefault.imagePath) {
+  //       // Deprecated, backwards-compatibility only
+  //       let path = this._detectIconPath(name);
+  //       // Compatible with webpack
+  //       // Don't attach data url onto IconDefault.imagePath
+  //       if (path.indexOf('data:image/') === 0) {
+  //         return path;
+  //       }
+  //       IconDefault.imagePath = path;
+  //     }
+  //
+  //     // @option imagePath: String
+  //     // `Icon.Default` will try to auto-detect the location of the
+  //     // blue icon images. If you are placing these images in a non-standard
+  //     // way, set this option to point to the right path.
+  //     return ((this.options.imagePath || IconDefault.imagePath) + Icon.prototype._getIconUrl.call(this, name));
+  //   };
+  //
+  //   IconDefault.prototype._detectIconPath = function(name) {
+  //     let el = create$1('div', 'leaflet-default-marker-' + name, document.body);
+  //     let path = getStyle(el, 'background-image') || getStyle(el, 'backgroundImage'); // IE8
+  //
+  //     document.body.removeChild(el);
+  //
+  //     if (path === null || path.indexOf('url') !== 0) {
+  //       path = '';
+  //     } else {
+  //       // Compatible with webpack
+  //       path = path.replace(/^url\((["']?)(.+?)(marker-(icon|shadow)\.png)?\1\)/, '$2');
+  //     }
+  //
+  //     return path;
+  //   };
+  //   // CSS
+  //   let css = [
+  //     `.leaflet-default-marker-icon {background-image: url(${markerIcon});}`,
+  //     `.leaflet-default-marker-icon-2x {background-image: url(${markerIcon2x});}`,
+  //     `.leaflet-default-marker-shadow {background-image: url(${markerShadow});}`
+  //   ].join('\n');
+  //   const style = create$1('style', null, document.head);
+  //   style.setAttribute('data-type', 'leaflet-marker-patch');
+  //   style.appendChild(document.createTextNode(css));
+  // }
+
 }
+
+

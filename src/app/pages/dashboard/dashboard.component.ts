@@ -5,9 +5,6 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {fromEvent, Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import * as axios from 'node_modules/axios/dist/axios.min';
-// 很重要，不然缩放的时候这2张图片会报404
-// import 'node_modules/leaflet/dist/images/marker-icon-2x.png';
-// import 'node_modules/leaflet/dist/images/marker-shadow.png';
 
 
 import {getMinified} from '../../services/commfn.service';
