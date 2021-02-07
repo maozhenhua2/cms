@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+// import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+// import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+// import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -23,16 +24,19 @@ import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.
 import { FooterComponent } from './components/footer/footer.component';
 import { FloatSubMenuComponent } from './components/float-sub-menu/float-sub-menu.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { EquipmentboxComponent } from './components/equipmentbox/equipmentbox.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { MapComponent } from './components/map/map.component';
+import { MonitorComponent } from './components/monitor/monitor.component';
+import { ServersComponent } from './components/servers/servers.component';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MonitorAndServerComponent } from './pages/monitor-and-server/monitor-and-server.component';
 
 import { CommfnService } from './services/commfn.service';
-import { EquipmentboxComponent } from './components/equipmentbox/equipmentbox.component';
-import { ChartComponent } from './components/chart/chart.component';
-import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
@@ -51,7 +55,10 @@ import { MapComponent } from './components/map/map.component';
     DashboardComponent,
     EquipmentboxComponent,
     ChartComponent,
-    MapComponent
+    MapComponent,
+    MonitorAndServerComponent,
+    MonitorComponent,
+    ServersComponent
   ],
   imports: [
     BrowserModule,

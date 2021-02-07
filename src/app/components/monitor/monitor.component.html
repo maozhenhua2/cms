@@ -1,0 +1,10 @@
+<div class="monitorBox card-body">
+	<div class="status" [ngClass]="getStatus(option.status)"></div>
+	<div class="statusDetail">
+		<ul>
+			<li><span>Type:</span><span>{{option.type}}</span></li>
+			<li><span>Name:</span><span>{{option.name}}</span></li>
+			<li><span>NETWORK</span><span>{{option.time}}</span></li>
+		</ul>
+	</div>
+</div>

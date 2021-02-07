@@ -3,7 +3,12 @@ var pageMenus = [
     'icon': 'fa fa-th-large',
     'title': 'Monitoring',
     'url': 'home',
-  }/*, {
+  }, {
+  	'icon':  'fa fa-th-large',
+  	'title': 'Monitor and server',
+  	'url': 'monitorAndServer'
+  }
+  /*, {
 	  'icon': 'fa fa-key',
 	  'title': 'Login & Register',
 	  'url': '',

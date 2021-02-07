@@ -1,0 +1,14 @@
+http://monitor.cleanairspaces.com/index.php/api/router?app_id=1&method=DashboardAll&nonce=aa&user=cleanair&pwd=cleanair&type=1
+Server status - CRM, CMD, Monitor, WWW, MQTT => server
+Location of all customers (MAP) => locs
+Monitors down (Most recent to least recent) => monitors
+Access to API & Web per customer (One month for totals, last week per client) => usage
+
+http://monitor.cleanairspaces.com/index.php/api/router?app_id=1&method=GetALLMachinesStatus&nonce=aa&user=cleanair&pwd=cleanair&type=1
+Issues (With customer equipment) => all_status, device_status, mon_status
+status:{
+  working_monitors: 1, 
+  stop_three_hour_monitors: 0, // >3 hours & <3 days
+  stop_monitors: -1, // >3 days & <1 month
+  inactive_monitors: -2 // >1 month
+}

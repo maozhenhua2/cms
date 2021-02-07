@@ -74,30 +74,44 @@ export class DashboardComponent implements OnInit {
       this.mapdata = DashboardAll.data.data;
 
       this.option = {
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         title: {
-          text: '某站点用户访问来源',
-          subtext: '纯属虚构',
-          left: 'center'
+          text: 'Device Utilization',
+          right: '5%',
+          bottom: '5%',
+          textStyle: {
+            color: '#fff'
+          },
         },
         tooltip: {
           trigger: 'item'
         },
+        toolbox: {
+          show: false
+        },
         legend: {
+          show: false,
           orient: 'vertical',
           left: 'left',
+          textStyle: {
+            color: '#fff'
+          },
         },
         series: [
           {
             name: '访问来源',
             type: 'pie',
-            radius: '50%',
+            radius: ['30%', '70%'],
+            top: '0',
+            left: '5%',
+            center: ['50%', '40%'],
+            label: {
+              position: 'inside',
+              formatter: '{c}\n{b}'
+            },
             data: [
-              {value: 1048, name: '搜索引擎'},
-              {value: 735, name: '直接访问'},
-              {value: 580, name: '邮件营销'},
-              {value: 484, name: '联盟广告'},
-              {value: 300, name: '视频广告'}
+              {value: 3932, name: 'up', itemStyle: {color: 'green'}},
+              {value: 674, name: 'down', itemStyle: {color: 'red'}},
             ],
             emphasis: {
               itemStyle: {

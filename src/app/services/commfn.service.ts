@@ -33,7 +33,10 @@ export class CommfnService {
 
   static setToolBox(dom, id, option) {
     let _this = this;
-    option.toolbox = {
+    if (option.toolbox && !option.toolbox.show) {
+      return;
+    }
+    option.toolbox = Object.assign({
       show: true,
       right: 20,
       feature: {
@@ -55,7 +58,7 @@ export class CommfnService {
           }
         },
       }
-    };
+    }, option.toolbox);
   }
 
   // convert base64

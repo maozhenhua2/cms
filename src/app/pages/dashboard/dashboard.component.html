@@ -32,9 +32,12 @@
               <app-equipmentbox *ngIf="isHaskey('outdoor_status', status)" [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox>
             </div>
 
+            <h5>Equipment Availability Rate</h5>
             <div class="chart">
               <app-chart [option]="{option: option, min: min}"></app-chart>
             </div>
+            <h6>Availability Rate</h6>
+            <p class="availabilityRate">85.37%</p>
 
           </div>
         </div>
