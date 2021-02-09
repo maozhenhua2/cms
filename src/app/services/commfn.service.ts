@@ -140,11 +140,11 @@ export class CommfnService {
       option.visualMap.top = 40;
     }
     myChart.setOption(option);
-    myChart.resize();
-    window.addEventListener('resize', function() {
-      cb(myChart);
-      myChart.resize();
-    });
+    // myChart.resize();
+    // window.addEventListener('resize', function() {
+    //   cb(myChart);
+    //   myChart.resize();
+    // });
     return myChart;
   }
 

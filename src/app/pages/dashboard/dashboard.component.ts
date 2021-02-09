@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
     });
 
     let urls = this.router.url.split(('/')).filter((v) => !!v);
-    axios.get('/assets/i18n/en.json').then((data) => {
+    axios.get('./assets/i18n/en.json').then((data) => {
       this.links = urls;
       this.urls = urls.map((v) => data[v]);
     });
@@ -74,7 +74,6 @@ export class DashboardComponent implements OnInit {
       this.mapdata = DashboardAll.data.data;
 
       this.option = {
-        // backgroundColor: '#fff',
         title: {
           text: 'Device Utilization',
           right: '5%',
@@ -125,10 +124,6 @@ export class DashboardComponent implements OnInit {
       };
     }));
 
-  }
-
-  loadChart(data) {
-    console.log(data);
   }
 
   getb(urls) {

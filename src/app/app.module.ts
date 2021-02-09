@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+// import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -72,6 +73,7 @@ import { CommfnService } from './services/commfn.service';
     NgxDaterangepickerMd.forRoot(),
   ],
   providers: [
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
     CommfnService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

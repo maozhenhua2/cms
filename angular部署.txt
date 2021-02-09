@@ -1,5 +1,5 @@
 1.打开IIS添加Mime项
-关联扩展名：*.json
+关联扩展名：.json
 内容类型(MIME)：text/json
 
 文件扩展名：.woff

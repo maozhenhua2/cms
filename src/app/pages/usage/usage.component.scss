@@ -16,6 +16,25 @@
 	li {
 		display: flex;
 		justify-content: space-between;
-		padding: 5px;
+		padding: 5px 0;
 	}
+}
+
+.top10box {
+	h5 {
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #ccc;
+	}
+}
+
+.top10sum {
+	display: flex;
+	justify-content: space-between;
+}
+
+.top10sum {	
+	margin-top: 10px;
+	padding-top: 5px;
+	border-top: 1px solid #ccc;
 }

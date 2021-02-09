@@ -9,6 +9,7 @@ export class UsageComponent implements OnInit {
 	option:any = {};
 	useageList:any = [];
   min: any = false;
+  top10count = 0;
 
   constructor() { }
 
@@ -20,7 +21,7 @@ export class UsageComponent implements OnInit {
     url1 = './assets/data/DashboardAll.json';
     axios.get(url1).then((res) => {
     	let {usage} = res.data.data;
-    	console.log(usage);
+    	// console.log(usage);
 
 	  	this.option = {
 	      title: {
@@ -81,6 +82,15 @@ export class UsageComponent implements OnInit {
 	    });
 	    week_data.length = 10;
 	    this.useageList = week_data;
+      this.top10count = week_data.reduce((sum = 0, cur) => {
+      	if (typeof sum === 'number') {
+      		return Number(sum) + Number(cur.count);
+      	} else {
+      		return Number(sum.count) + Number(cur.count);
+      	}
+      	
+      })
+
 
     });
 

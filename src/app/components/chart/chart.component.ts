@@ -28,7 +28,13 @@ export class ChartComponent implements OnInit {
     if ('series' in this.option.option) {
       console.log('ngOnChange');
       // console.log(this.option);
-      this.initChart();
+      if (!this.chart1) {
+        console.log('ngOnChange--------');
+        this.initChart();
+      } else  {
+        this.chart1.clear();
+        this.chart1.setOption(this.option.option);
+      }
     }
   }
 
@@ -67,7 +73,7 @@ export class ChartComponent implements OnInit {
 
     // resize 防抖
     const resize = fromEvent(window, 'resize');
-    const result = resize.pipe(debounceTime(300));
+    const result = resize.pipe(debounceTime(50));
     result.subscribe(x => {
       this.chart1.resize();
     });
