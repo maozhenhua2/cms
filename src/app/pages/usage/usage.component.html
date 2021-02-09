@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-xs-6">
+		<div class="card border-0 bg-dark text-white mb-3">
+			<div class="card-body">
+				<app-chart [option]="{option: option, min: min}"></app-chart>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="card border-0 bg-dark text-white mb-3">
+			<div class="card-body">
+				<h5>top top+</h5>
+				<ul class="useageList">
+					<li *ngFor="let item of useageList;index as i;"><span>{{item.name_en}}</span><span>{{item.count}}</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

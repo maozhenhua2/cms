@@ -9,7 +9,7 @@
 		<div class="col-xl-6">
 			<perfect-scrollbar>
 				<h5>Infrastructure Status</h5>
-				<app-servers class="card border-0 bg-dark text-white mb-3"></app-servers>
+				<app-servers class="card border-0 bg-dark text-white mb-3" [option]="option" *ngFor="let option of servers"></app-servers>
 			</perfect-scrollbar>
 			<!-- <div class="card border-0 bg-dark text-white mb-3">
 				<div class="card-body"></div>

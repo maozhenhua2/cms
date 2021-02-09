@@ -7,6 +7,10 @@ var pageMenus = [
   	'icon':  'fa fa-th-large',
   	'title': 'Monitor and server',
   	'url': 'monitorAndServer'
+  }, {
+  	'icon':  'fa fa-th-large',
+  	'title': 'Usage',
+  	'url': 'usage'
   }
   /*, {
 	  'icon': 'fa fa-key',

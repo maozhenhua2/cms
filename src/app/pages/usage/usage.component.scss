@@ -1,0 +1,21 @@
+:host(app-usage) {
+	display: block;
+	height: 100%;
+	& > div {
+		height: 100%;
+	}
+	.card,
+	.card-body {
+		height: 100%;
+	}
+}
+
+.useageList {
+  margin: 0;
+	padding: 0;
+	li {
+		display: flex;
+		justify-content: space-between;
+		padding: 5px;
+	}
+}

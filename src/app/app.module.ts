@@ -35,6 +35,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MonitorAndServerComponent } from './pages/monitor-and-server/monitor-and-server.component';
+import { UsageComponent } from './pages/usage/usage.component';
 
 import { CommfnService } from './services/commfn.service';
 
@@ -58,7 +59,8 @@ import { CommfnService } from './services/commfn.service';
     MapComponent,
     MonitorAndServerComponent,
     MonitorComponent,
-    ServersComponent
+    ServersComponent,
+    UsageComponent
   ],
   imports: [
     BrowserModule,

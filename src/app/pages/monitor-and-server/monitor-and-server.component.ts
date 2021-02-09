@@ -9,6 +9,7 @@ import * as axios from 'node_modules/axios/dist/axios.min';
 })
 export class MonitorAndServerComponent implements OnInit {
 	monitors:any[] = [];
+  servers:any[] = [];
 
   constructor() { }
 
@@ -43,8 +44,9 @@ export class MonitorAndServerComponent implements OnInit {
     		if (a.timeValue === b.timeValue) return 0;
     	});
 
-    	console.log(monitors)
     	this.monitors = monitors;
+      console.log(res)
+      this.servers = server;
 
     });
 
