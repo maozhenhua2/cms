@@ -1,40 +1,69 @@
 :host(app-usage) {
-	display: block;
-	height: 100%;
-	& > div {
-		height: 100%;
-	}
-	.card,
-	.card-body {
-		height: 100%;
-	}
+  display: block;
+  min-height: 100%;
+  height: 100%;
+
+  & > div {
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .card,
+  .card-body {
+    height: 100%;
+  }
+
+  .card-body {
+    flex: 0 0 auto;
+  }
 }
 
 .useageList {
   margin: 0;
-	padding: 0;
-	li {
-		display: flex;
-		justify-content: space-between;
-		padding: 5px 0;
-	}
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
 }
 
 .top10box {
-	h5 {
-		margin-bottom: 10px;
-		padding-bottom: 5px;
-		border-bottom: 1px solid #ccc;
-	}
+  h5 {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
 }
 
 .top10sum {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-.top10sum {	
-	margin-top: 10px;
-	padding-top: 5px;
-	border-top: 1px solid #ccc;
+.top10sum {
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid #ccc;
+}
+
+.chart {
+  width: 100%;
+  //height: 100%;
+  height: 300px;
+}
+
+@media screen and (max-width: 1200px) {
+  :host(app-usage) {
+    & > .row {
+      & > div {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .left-content {
+    //height: 300px !important;
+  }
 }

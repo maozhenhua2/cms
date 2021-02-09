@@ -31,10 +31,12 @@
 
 #allStatus {
   overflow: auto;
+
   h5 {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 15px;
+
     &:nth-child(1) {
       margin-top: 0;
     }
@@ -48,4 +50,14 @@
 .availabilityRate {
   text-align: center;
   font-size: 3rem;
+}
+
+@media screen and (max-width: 1200px) {
+  #allStatus {
+    h5 {
+      &:nth-child(1) {
+        margin-top: 20px;
+      }
+    }
+  }
 }

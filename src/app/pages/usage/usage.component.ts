@@ -88,7 +88,7 @@ export class UsageComponent implements OnInit {
       	} else {
       		return Number(sum.count) + Number(cur.count);
       	}
-      	
+
       })
 
 

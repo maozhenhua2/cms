@@ -17,7 +17,7 @@ export class ChartComponent implements OnInit {
 
   constructor(
     private zone: NgZone,
-    // private changeDetectorRef: ChangeDetectorRef,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
   }
 
@@ -31,7 +31,7 @@ export class ChartComponent implements OnInit {
       if (!this.chart1) {
         console.log('ngOnChange--------');
         this.initChart();
-      } else  {
+      } else {
         this.chart1.clear();
         this.chart1.setOption(this.option.option);
       }

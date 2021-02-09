@@ -1,11 +1,25 @@
-:host(app-monitor-and-server){
-	display: block;
-	height: 100%;
-	&>.row {
-		height: 100%;
-		&>div {
-			height: 100%;
-		}
-	}
+:host(app-monitor-and-server) {
+  display: block;
+  height: 100%;
+
+  & > .row {
+    height: 100%;
+
+    & > div {
+      height: 100%;
+    }
+  }
 }
 
+@media screen and (max-width: 768px) {
+  :host(app-monitor-and-server) {
+    .row {
+      & > div {
+        &:nth-child(2) {
+          height: auto;
+          min-height: 100%;
+        }
+      }
+    }
+  }
+}
