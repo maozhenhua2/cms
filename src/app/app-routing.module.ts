@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MonitorAndServerComponent } from './pages/monitor-and-server/monitor-and-server.component';
 import { UsageComponent } from './pages/usage/usage.component';
+import { NotiticationsComponent } from './pages/notitications/notitications.component';
 
 
 import { LoginGuard } from './guards/login.guard';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'home', component: DashboardComponent },
   { path: 'monitorAndServer', component: MonitorAndServerComponent },
   { path: 'usage', component: UsageComponent },
+  { path: 'notitications', component: NotiticationsComponent },
   // { path: 'home', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [LoginGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},

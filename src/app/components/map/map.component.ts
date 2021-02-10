@@ -27,7 +27,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 })
 export class MapComponent implements OnInit {
   @ViewChild('map') map: ElementRef;
-  @Input() datas: any;
+  @Input() datas: any = [];
 
   @Output() loadView = new EventEmitter<any>();
 
@@ -39,9 +39,12 @@ export class MapComponent implements OnInit {
   }
 
   ngOnChanges() {
-    if ('locs' in this.datas) {
-      console.log('ngOnChanges');
-      this.initMap(this.datas.locs);
+    // if ('locs' in this.datas) {
+    //   console.log('ngOnChanges');
+    //   this.initMap(this.datas.locs);
+    // }
+    if (this.datas.length) {
+      this.initMap(this.datas);
     }
   }
 
@@ -49,12 +52,16 @@ export class MapComponent implements OnInit {
   }
 
   initMap(loc: any): void {
-    let center = {lat: 37.09023980307208, lng: 100.19531250000001};
+    // let center = {lat: 37.09023980307208, lng: 100.19531250000001};
+    let center = {lat: 38.90937971951893, lng: 1.4337331758275254};
     let url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     // let map = L.map('map').setView([center.lat, center.lng], 3);
-    let map = L.map(this.map.nativeElement).setView([center.lat, center.lng], 3);
+    let map = L.map(this.map.nativeElement).setView([center.lat, center.lng], 12);
     L.tileLayer(url).addTo(map);
     let markers = L.markerClusterGroup();
+    // markers.addLayer(L.marker(new L.LatLng(center.lat, center.lng), {
+    //   title: ''
+    // }));
     for (let i = 0; i < loc.length; i++) {
       let datas = loc[i];
       let title = datas.name_en;
@@ -72,9 +79,9 @@ export class MapComponent implements OnInit {
     // console.log(map);
     map.addLayer(markers);
 
-    // map.on('click', function(data) {
-    //   console.log(map.getCenter());
-    // });
+    map.on('click', function(data) {
+      console.log(data, map.getCenter());
+    });
 
   }
 

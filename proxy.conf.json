@@ -1,0 +1,6 @@
+{
+	"/api/router": {
+		"target": "http://monitor.cleanairspaces.com/index.php",
+		"secure": false
+	}
+}

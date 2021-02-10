@@ -52,6 +52,16 @@
   font-size: 3rem;
 }
 
+.dashboardHead {
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#dropdown {
+  margin-left: 30px;
+}
+
 @media screen and (max-width: 1200px) {
   #allStatus {
     h5 {

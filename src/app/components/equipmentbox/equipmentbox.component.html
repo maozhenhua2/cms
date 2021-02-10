@@ -20,13 +20,13 @@
 		</div>
 
 		<div *ngIf="option.status.nok !== undefined">
-			<p>No data</p>
+			<p>Issues</p>
 			<span class="red"></span>
 			<p>{{option.status.nok}}</p>
 		</div>
 
 		<div *ngIf="option.status.ok !== undefined">
-			<p>Data ok</p>
+			<p>OK</p>
 			<span class="green"></span>
 			<p>{{option.status.ok}}</p>
 		</div>

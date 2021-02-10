@@ -1,16 +1,20 @@
 var pageMenus = [
   {
     'icon': 'fa fa-th-large',
-    'title': 'Monitoring',
+    'title': 'Biosecured Locations',
     'url': 'home',
   }, {
   	'icon':  'fa fa-th-large',
-  	'title': 'Monitor and server',
+  	'title': 'Client Status',
   	'url': 'monitorAndServer'
   }, {
   	'icon':  'fa fa-th-large',
-  	'title': 'Usage',
+  	'title': 'Equipment Status',
   	'url': 'usage'
+  }, {
+    'icon':  'fa fa-th-large',
+    'title': 'Notitications',
+    'url': 'notitications'
   }
   /*, {
 	  'icon': 'fa fa-key',

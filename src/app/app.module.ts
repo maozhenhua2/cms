@@ -37,6 +37,7 @@ import { ExtraErrorComponent } from './pages/extra-error/extra-error.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MonitorAndServerComponent } from './pages/monitor-and-server/monitor-and-server.component';
 import { UsageComponent } from './pages/usage/usage.component';
+import { NotiticationsComponent } from './pages/notitications/notitications.component';
 
 import { CommfnService } from './services/commfn.service';
 
@@ -61,7 +62,8 @@ import { CommfnService } from './services/commfn.service';
     MonitorAndServerComponent,
     MonitorComponent,
     ServersComponent,
-    UsageComponent
+    UsageComponent,
+    NotiticationsComponent
   ],
   imports: [
     BrowserModule,
