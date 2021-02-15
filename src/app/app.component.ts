@@ -1,28 +1,58 @@
 import {Component, HostListener, Renderer2, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {Router, NavigationEnd, NavigationStart, ActivatedRoute} from '@angular/router';
+import {Router, NavigationEnd, NavigationStart, ActivatedRoute, RouterOutlet} from '@angular/router';
 import pageSettings from './config/page-settings';
 import * as global from './config/globals';
 
 import {changeMinified} from 'src/app/services/commfn.service';
+import {slideInAnimation} from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    slideInAnimation
+    // animation triggers go here
+  ]
 })
 
 export class AppComponent {
   title = 'cms';
   pageSettings;
 
+  // window scroll
+  pageHasScroll;
+
+  // routerState:boolean = true;
+  // routerStateCode:string = 'active';
+
+
+  constructor(private titleService: Title, private router: Router, private renderer: Renderer2) {
+    // this.router.events.subscribe(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     // 每次路由跳转改变状态
+    //     this.routerState = !this.routerState;
+    //     this.routerStateCode = this.routerState ? 'active' : 'inactive';
+    //   }
+    // })
+    router.events.subscribe((e) => {
+      if (e instanceof NavigationStart) {
+        if (window.innerWidth < 768) {
+          this.pageSettings.pageMobileSidebarToggled = false;
+        }
+      }
+    });
+  }
+
   ngOnInit() {
     // page settings
     this.pageSettings = pageSettings;
   }
 
-  // window scroll
-  pageHasScroll;
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+  }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll($event) {
@@ -96,16 +126,6 @@ export class AppComponent {
       this.pageSettings.pageMobileRightSidebarToggled = true;
       this.pageSettings.pageMobileRightSidebarFirstClicked = true;
     }
-  }
-
-  constructor(private titleService: Title, private router: Router, private renderer: Renderer2) {
-    router.events.subscribe((e) => {
-      if (e instanceof NavigationStart) {
-        if (window.innerWidth < 768) {
-          this.pageSettings.pageMobileSidebarToggled = false;
-        }
-      }
-    });
   }
 }
 

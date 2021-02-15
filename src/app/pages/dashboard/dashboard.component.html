@@ -1,77 +1,85 @@
-<!-- begin breadcrumb -->
-<!-- <ol class="breadcrumb float-xl-right">
-  <li class="breadcrumb-item" *ngFor="let url of urls; index as i;" [ngClass]="{'active': i === urls.length - 1}"><a
-    [routerLink]="getb(links)[i] + '/' +  links[i]">{{url}} </a></li>
-</ol> -->
-<!-- end breadcrumb -->
-<!-- begin page-header -->
-<div class="dashboardHead">
-  <h1 class="page-header mb-3">Biosecured Locations</h1>
+<div class="container-fluid">
+  <!-- begin breadcrumb -->
+  <!-- <ol class="breadcrumb float-xl-right">
+    <li class="breadcrumb-item" *ngFor="let url of urls; index as i;" [ngClass]="{'active': i === urls.length - 1}"><a
+      [routerLink]="getb(links)[i] + '/' +  links[i]">{{url}} </a></li>
+  </ol> -->
+  <!-- end breadcrumb -->
+  <!-- begin page-header -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="dashboardHead">
+        <h1 class="page-header mb-3">Biosecured Locations</h1>
 
-  <div id="dropdown" ngbDropdown class="d-inline-block" placement="{{dropdownPos}}">
-    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{dropdownSelect}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button ngbDropdownItem *ngFor="let item of dropdown; index as i" (click)="selectItem(item, i)">{{item.text}}</button>
-      <!-- <button ngbDropdownItem>Hotels</button>
-      <button ngbDropdownItem>Restaurants</button>
-      <button ngbDropdownItem>Other</button> -->
-    </div>
-  </div>
-
-</div>
-<!-- end page-header -->
-<!-- begin row -->
-<div class="row" id="mapBox">
-  <div class="col-xl-12">
-    <!-- begin card -->
-    <div class="card border-0 bg-dark text-white mb-3">
-      <!-- begin card-body -->
-      <div class="card-body">
-        <!-- begin row -->
-        <div class="row">
-          <div class="col-xl-8">
-            <app-map [datas]="mapdata"></app-map>
-          </div>
-
-          <div class="col-xl-4" id="allStatus">
-            <div id="equipmentStatusBox">
-              <h5>Equipment Status</h5>
-              <!-- <app-equipmentbox *ngIf="isHaskey('all_status', status)"
-                                [option]="{status: status.all_status, title: 'All Equipment'}"></app-equipmentbox> -->
-
-              <!-- <app-equipmentbox *ngIf="isHaskey('device_status', status)"
-                                [option]="{status: status.device_status, title: 'Machines'}"></app-equipmentbox> -->
-
-              <!-- <app-equipmentbox *ngIf="isHaskey('mon_status', status)"
-                                [option]="{status: status.mon_status, title: 'Monitors'}"></app-equipmentbox> -->
-
-              <!-- <app-equipmentbox *ngIf="isHaskey('outdoor_status', status)"
-                                [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox> -->
-
-              <app-equipmentbox *ngIf="isHaskey('hotels', status)"
-                                [option]="{status: status.hotels, title: 'Hotels'}"></app-equipmentbox>
-
-              <app-equipmentbox *ngIf="isHaskey('restaurants', status)"
-                                [option]="{status: status.restaurants, title: 'Restaurants'}"></app-equipmentbox>
-
-              <app-equipmentbox *ngIf="isHaskey('other', status)"
-                                [option]="{status: status.other, title: 'Other'}"></app-equipmentbox>
-            </div>
-
-            <h5>Equipment Availability Rate</h5>
-            <div class="chart">
-              <app-chart [option]="{option: option, min: min}"></app-chart>
-            </div>
-            <h5>Availability Rate</h5>
-            <p class="availabilityRate">{{pct}}%</p>
-
+        <div id="dropdown" ngbDropdown class="d-inline-block" placement="{{dropdownPos}}">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{dropdownSelect}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem *ngFor="let item of dropdown; index as i"
+                    (click)="selectItem(item, i)">{{item.text}}</button>
+            <!-- <button ngbDropdownItem>Hotels</button>
+            <button ngbDropdownItem>Restaurants</button>
+            <button ngbDropdownItem>Other</button> -->
           </div>
         </div>
-        <!-- end row -->
+
       </div>
-      <!-- end card-body -->
     </div>
-    <!-- end card -->
   </div>
+  <!-- end page-header -->
+  <!-- begin row -->
+
+  <div class="row" id="mapBox">
+    <div class="col-xl-12">
+      <!-- begin card -->
+      <div class="card border-0 bg-dark text-white mb-3">
+        <!-- begin card-body -->
+        <div class="card-body">
+          <!-- begin row -->
+          <div class="row">
+            <div class="col-xl-8">
+              <app-map [datas]="mapdata"></app-map>
+            </div>
+
+            <div class="col-xl-4" id="allStatus">
+              <div id="equipmentStatusBox">
+                <h5>Equipment Status</h5>
+                <!-- <app-equipmentbox *ngIf="isHaskey('all_status', status)"
+                                  [option]="{status: status.all_status, title: 'All Equipment'}"></app-equipmentbox> -->
+
+                <!-- <app-equipmentbox *ngIf="isHaskey('device_status', status)"
+                                  [option]="{status: status.device_status, title: 'Machines'}"></app-equipmentbox> -->
+
+                <!-- <app-equipmentbox *ngIf="isHaskey('mon_status', status)"
+                                  [option]="{status: status.mon_status, title: 'Monitors'}"></app-equipmentbox> -->
+
+                <!-- <app-equipmentbox *ngIf="isHaskey('outdoor_status', status)"
+                                  [option]="{status: status.outdoor_status, title: 'Outerdoor Monitors'}"></app-equipmentbox> -->
+
+                <app-equipmentbox *ngIf="isHaskey('hotels', status)"
+                                  [option]="{status: status.hotels, title: 'Hotels'}"></app-equipmentbox>
+
+                <app-equipmentbox *ngIf="isHaskey('restaurants', status)"
+                                  [option]="{status: status.restaurants, title: 'Restaurants'}"></app-equipmentbox>
+
+                <app-equipmentbox *ngIf="isHaskey('other', status)"
+                                  [option]="{status: status.other, title: 'Other'}"></app-equipmentbox>
+              </div>
+
+              <h5>Equipment Availability Rate</h5>
+              <div class="chart">
+                <app-chart [option]="{option: option, min: min}"></app-chart>
+              </div>
+              <h5>Availability Rate</h5>
+              <p class="availabilityRate">{{pct}}%</p>
+
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    </div>
+  </div>
+  <!-- end row -->
 </div>
-<!-- end row -->

@@ -2,11 +2,15 @@
   display: block;
   height: 100%;
 
-  & > .row {
+  & > .container-fluid {
     height: 100%;
 
-    & > div {
+    & > .row {
       height: 100%;
+
+      & > div {
+        height: 100%;
+      }
     }
   }
 }

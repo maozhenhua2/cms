@@ -20,18 +20,26 @@
 
   <app-top-menu *ngIf="pageSettings.pageTopMenu && !pageSettings.pageEmpty"></app-top-menu>
 
-  <app-header (toggleSidebarRightCollapsed)="onToggleSidebarRight($event)" (toggleMobileSidebar)="onToggleMobileSidebar($event)" (toggleMobileRightSidebar)="onToggleMobileRightSidebar($event)" [pageSidebarTwo]="pageSettings.pageSidebarTwo" *ngIf="!pageSettings.pageEmpty"></app-header>
+  <app-header (toggleSidebarRightCollapsed)="onToggleSidebarRight($event)"
+              (toggleMobileSidebar)="onToggleMobileSidebar($event)"
+              (toggleMobileRightSidebar)="onToggleMobileRightSidebar($event)"
+              [pageSidebarTwo]="pageSettings.pageSidebarTwo" *ngIf="!pageSettings.pageEmpty"></app-header>
 
-  <app-sidebar (toggleSidebarMinified)="onToggleSidebarMinified($event)" (hideMobileSidebar)="onHideMobileSidebar($event)" *ngIf="!pageSettings.pageWithoutSidebar && !pageSettings.pageEmpty" [pageSidebarTransparent]="pageSettings.pageSidebarTransparent" [pageSidebarMinified]="pageSettings.pageSidebarMinified"></app-sidebar>
+  <app-sidebar (toggleSidebarMinified)="onToggleSidebarMinified($event)"
+               (hideMobileSidebar)="onHideMobileSidebar($event)"
+               *ngIf="!pageSettings.pageWithoutSidebar && !pageSettings.pageEmpty"
+               [pageSidebarTransparent]="pageSettings.pageSidebarTransparent"
+               [pageSidebarMinified]="pageSettings.pageSidebarMinified"></app-sidebar>
 
-  <app-sidebar-right (hideMobileRightSidebar)="onHideMobileRightSidebar($event)" *ngIf="pageSettings.pageSidebarTwo && !pageSettings.pageEmpty"></app-sidebar-right>
+  <app-sidebar-right (hideMobileRightSidebar)="onHideMobileRightSidebar($event)"
+                     *ngIf="pageSettings.pageSidebarTwo && !pageSettings.pageEmpty"></app-sidebar-right>
 
   <div id="content" class="content" [ngClass]="{
     'content-full-width': pageSettings.pageContentFullWidth,
     'content-inverse-mode': pageSettings.pageContentInverseMode,
     'p-0 m-0': pageSettings.pageEmpty
-  }">
-    <router-outlet></router-outlet>
+  }" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 
   <app-footer *ngIf="pageSettings.pageWithFooter"></app-footer>
