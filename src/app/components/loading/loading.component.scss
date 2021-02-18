@@ -1,0 +1,38 @@
+#loading {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0,0,0,0.5);
+	left: 0;
+	top: 0;
+	z-index: 1020;
+	&.show {
+		display: block;
+	}
+}
+
+h1 {
+	font-size: 4rem;
+	top: 50%;
+	position: relative;
+	margin-top: -25%;
+	font-weight: bolder;
+	display: inline-block;
+	left: 50%;
+	margin-left: -25%;
+	&:before {
+		content: attr(data-content);
+		position: absolute;
+		overflow: hidden;
+		height: 4rem;
+		color: white;
+		animation: loading 10s linear infinite;
+		white-space: nowrap;
+	}
+}
+
+@keyframes loading {
+	from {max-width: 0%;}
+	to {max-width: 100%;}
+}
