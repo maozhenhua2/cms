@@ -48,6 +48,10 @@ export class ChartComponent implements OnInit {
     // console.log(this.chart.nativeElement.clientWidth);
   }
 
+  ngOnDestroy(){
+    
+  }
+
   initChart() {
     // console.log(this.chart.nativeElement.clientWidth);
     let count = 0;

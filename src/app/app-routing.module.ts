@@ -12,15 +12,16 @@ import {UsageComponent} from './pages/usage/usage.component';
 import {NotiticationsComponent} from './pages/notitications/notitications.component';
 
 
+
 import {LoginGuard} from './guards/login.guard';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: DashboardComponent, data: {animation: 'home'}},
-  {path: 'monitorAndServer', component: MonitorAndServerComponent, data: {animation: 'monitorAndServer'}},
-  {path: 'usage', component: UsageComponent, data: {animation: 'usage'}},
-  {path: 'notitications', component: NotiticationsComponent, data: {animation: 'notitications'}},
+  {path: 'home', component: DashboardComponent, data: {animation: 'home', keep: true}},
+  {path: 'monitorAndServer', component: MonitorAndServerComponent, data: {animation: 'monitorAndServer', keep: true}},
+  {path: 'usage', component: UsageComponent, data: {animation: 'usage', keep: true}},
+  {path: 'notitications', component: NotiticationsComponent, data: {animation: 'notitications', keep: true}},
   // { path: 'home', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [LoginGuard] },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

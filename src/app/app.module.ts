@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { RouteReuseStrategy } from '@angular/router';
 
 import {AppRoutingModule} from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -43,6 +44,10 @@ import {NotiticationsComponent} from './pages/notitications/notitications.compon
 import {CommfnService} from './services/commfn.service';
 
 
+import {Keepalive} from './class/keepalive';
+import { LoadingComponent } from './components/loading/loading.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +69,8 @@ import {CommfnService} from './services/commfn.service';
     MonitorComponent,
     ServersComponent,
     UsageComponent,
-    NotiticationsComponent
+    NotiticationsComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +85,7 @@ import {CommfnService} from './services/commfn.service';
   providers: [
     // { provide: LocationStrategy, useClass: HashLocationStrategy },
     CommfnService,
+    {provide: RouteReuseStrategy , useClass: Keepalive},
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
